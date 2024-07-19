@@ -1,7 +1,7 @@
 import os
 from urllib import parse
 from json import JSONDecodeError
-
+import time
 from curl_cffi import requests
 
 default_headers = {
@@ -13,11 +13,12 @@ default_headers = {
 
 
 def generate_proxies(proxy_settings):
-    base = f"http://{os.environ.get('ZR_API_KEY')}:custom_headers=true"
-    suffix = "@proxy.zenrows.com:8001"
     if not proxy_settings['enabled']:
         return None
     else:
+        api_key = os.getenv('ZR_API_KEY')
+        base = f"http://{api_key}:custom_headers=true"
+        suffix = "@proxy.zenrows.com:8001"
         if 'params' in proxy_settings:
             proxy = base + "&" + parse.urlencode(proxy_settings['params']) + suffix
         else:
@@ -57,12 +58,15 @@ def req_with_retry(url, retry_num, proxies=None, request_headers=None):
     except Exception as e:
         if retry_num < 3:
             print(f"Exception {e} while accessing url: {url}, retrying...")
+            time.sleep(3)
             return req_with_retry(url, retry_num + 1, proxies=proxies, request_headers=request_headers)
         elif retry_num == 3 and proxies is None:
             print(f"Exception {e} while accessing url: {url}. Last retry, trying with proxy...")
+            time.sleep(3)
             return req_with_retry(url, retry_num + 1,
                                   proxies=generate_proxies({
                                       'enabled': True,
+                                      'api_key': os.getenv('ZR_API_KEY'),
                                       'params': {
                                           'premium_proxy': True,
                                           'proxy_country': 'us'
