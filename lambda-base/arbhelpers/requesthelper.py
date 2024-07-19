@@ -66,7 +66,6 @@ def req_with_retry(url, retry_num, proxies=None, request_headers=None):
             return req_with_retry(url, retry_num + 1,
                                   proxies=generate_proxies({
                                       'enabled': True,
-                                      'api_key': os.getenv('ZR_API_KEY'),
                                       'params': {
                                           'premium_proxy': True,
                                           'proxy_country': 'us'
