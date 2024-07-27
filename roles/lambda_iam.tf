@@ -39,6 +39,15 @@ resource "aws_iam_policy" "lambda_execution_policy" {
         "Resource": [
           "*"
         ]
+      },
+      {
+        Action: [
+          "states:StartExecution"
+        ],
+        Effect: "Allow",
+        Resource: [
+          "arn:aws:states:us-east-1:327989636102:stateMachine:arb-adapter-statemachine"
+        ]
       }
     ]
   })
