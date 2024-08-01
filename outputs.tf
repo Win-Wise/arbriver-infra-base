@@ -30,6 +30,11 @@ output "uk_https_proxy_secret" {
   sensitive = true
 }
 
+output "us_https_proxy_secret" {
+  value = aws_secretsmanager_secret.us_https_proxy_uri
+  sensitive = true
+}
+
 output "zenrows_api_key_secret" {
   value = aws_secretsmanager_secret.zenrows_api_key
   sensitive = true
