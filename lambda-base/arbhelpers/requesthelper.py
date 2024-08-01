@@ -16,7 +16,7 @@ def generate_proxies(proxy_settings):
     if not proxy_settings['enabled']:
         return None
     elif 'custom' in proxy_settings:
-        return {"http": proxy_settings['custom'], "https": proxy_settings['custom']}
+        return {"http": proxy_settings['custom']['http'], "https": proxy_settings['custom']['https']}
     else:
         api_key = os.getenv('ZR_API_KEY')
         base = f"http://{api_key}:custom_headers=true"
