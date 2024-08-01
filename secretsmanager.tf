@@ -47,3 +47,13 @@ resource "aws_secretsmanager_secret_version" "uk_https_proxy_uri" {
   secret_id     = aws_secretsmanager_secret.uk_https_proxy_uri.id
   secret_string = var.uk_https_proxy_uri
 }
+
+#US Proxy secret
+resource "aws_secretsmanager_secret" "us_https_proxy_uri" {
+  name = "us_https_proxy_uri"
+}
+
+resource "aws_secretsmanager_secret_version" "us_https_proxy_uri" {
+  secret_id     = aws_secretsmanager_secret.us_https_proxy_uri.id
+  secret_string = var.us_https_proxy_uri
+}

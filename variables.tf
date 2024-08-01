@@ -27,3 +27,9 @@ variable "uk_https_proxy_uri" {
   description = "uri for uk proxy"
   sensitive = true
 }
+
+variable "us_https_proxy_uri" {
+  type = string
+  description = "uri for us proxy"
+  sensitive = true
+}
