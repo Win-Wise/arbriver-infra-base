@@ -2,10 +2,11 @@ from arbhelpers.arbutils import clean_name
 
 
 class BetType:
-    def __init__(self, name, ordinal, participant=None):
+    def __init__(self, name, ordinal, participant=None, segment='FT'):
         self.name = name
         self.ordinal = ordinal
         self.participant = participant
+        self.segment = segment
 
 
 class Event:
