@@ -12,6 +12,6 @@ setup(
     name='arbhelpers',
     version='0.1',
     packages=['arbhelpers'],  # Explicitly list the package
-    package_dir={'': '.'},  # This tells setuptools to look for packages in the current directory
+    package_dir={'arbhelpers': '.'},  # Explicitly state the package directory
     install_requires=install_requires,
 )
