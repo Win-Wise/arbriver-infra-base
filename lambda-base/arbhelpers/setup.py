@@ -11,6 +11,7 @@ with open(requirements_path) as f:
 setup(
     name='arbhelpers',
     version='0.1',
-    packages=find_packages(),
+    packages=['arbhelpers'],  # Explicitly list the package
+    package_dir={'': '.'},  # This tells setuptools to look for packages in the current directory
     install_requires=install_requires,
 )
